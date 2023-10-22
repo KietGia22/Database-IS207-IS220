@@ -31,8 +31,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cart` (
-  `user_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
+  `user_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `product_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -43,7 +43,7 @@ CREATE TABLE `cart` (
 --
 
 CREATE TABLE `category` (
-  `category_id` int(11) NOT NULL,
+  `category_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `category_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -54,8 +54,8 @@ CREATE TABLE `category` (
 --
 
 CREATE TABLE `detail_order` (
-  `order_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
+  `order_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `product_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `price_pr` bigint(20) unsigned NOT NULL,
   `quantity_pr` int(11) NOT NULL,
   `warranty period` varchar(100) NOT NULL
@@ -68,7 +68,7 @@ CREATE TABLE `detail_order` (
 --
 
 CREATE TABLE `role` (
-  `role_id` int(11) NOT NULL,
+  `role_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `role_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -79,12 +79,12 @@ CREATE TABLE `role` (
 --
 
 CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
+  `user_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `role_id` int(11) NOT NULL,
+  `role_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `create_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -93,7 +93,7 @@ CREATE TABLE `user` (
 --
 
 CREATE TABLE `image`(
-   `img_id` int(11) NOT NULL,
+   `img_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
    `img_1` varchar(200) COLLATE utf8_unicode_ci NULL,
    `img_2` varchar(200) COLLATE utf8_unicode_ci NULL,
    `img_3` varchar(200) COLLATE utf8_unicode_ci NULL,
@@ -106,16 +106,15 @@ CREATE TABLE `image`(
 --
 
 CREATE TABLE `products`(
-	`product_id` int(11) NOT NULL,
-    `category_id` int(11) NOT NULL,
+	`product_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
     `name_pr` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
     `name_serial` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
     `ram` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-    `rom` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+    `memory` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
     `detail` longtext COLLATE utf8_unicode_ci NOT NULL,
     `price` int(11) NOT NULL,
     `quantity_pr` int(11) NOT NULL,
-    `img_id` int(11) NOT NULL,
+    `img_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
     `guarantee period` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -124,8 +123,8 @@ CREATE TABLE `products`(
 --
 
 CREATE TABLE `order` (
-	`order_id` int(11) NOT NULL,
-    `user_id` int(11) NOT NULL,
+	`order_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+    `user_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
     `create_order_at` timestamp NULL DEFAULT NULL,
     `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
 	`email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -134,7 +133,7 @@ CREATE TABLE `order` (
     `state` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
     `note` longtext COLLATE utf8_unicode_ci NOT NULL,
     `total` bigint(20) UNSIGNED NOT NULL,
-    `discount` int(11),
+    `discount` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
     `delivery_fee` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -142,8 +141,8 @@ CREATE TABLE `order` (
 -- Cấu trúc bảng cho bảng `wishlist`
 --
 CREATE TABLE `wishlist`(
-	`product_id` int(11) NOT NULL,
-    `user_id` int(11) NOT NULL
+	`product_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+    `user_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -151,18 +150,18 @@ CREATE TABLE `wishlist`(
 --
 
 CREATE TABLE `suppliers` (
-    `supplier_id` int(11) NOT NULL,
+    `supplier_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
     `supplier_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 ALTER TABLE `suppliers`
   ADD PRIMARY KEY (`supplier_id`);
 
 ALTER TABLE `products`
-  ADD `supplier_id` int(11);
+  ADD `supplier_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL;
   
 ------------------------------------------
 CREATE TABLE `discounts` (
-    `discount_id` int(11) NOT NULL,
+    `discount_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
     `discount_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
     `discount_amount` int(11) NOT NULL,
     `discount_date` timestamp NULL DEFAULT NULL
@@ -171,12 +170,12 @@ ALTER TABLE `discounts`
   ADD PRIMARY KEY (`discount_id`);
   
 CREATE TABLE `product_category` (
-    `product_id` int(11) NOT NULL,
-    `category_id` int(11) NOT NULL
+    `product_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+    `category_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `traffic user`(
-	`user_id` int(11) NOT NULL,
+	`user_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
     `time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
