@@ -159,7 +159,6 @@ ALTER TABLE `suppliers`
 ALTER TABLE `products`
   ADD `supplier_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL;
   
-------------------------------------------
 CREATE TABLE `discounts` (
     `discount_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
     `discount_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
