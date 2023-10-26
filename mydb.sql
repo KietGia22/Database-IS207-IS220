@@ -64,17 +64,6 @@ CREATE TABLE `detail_order` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `role`
---
-
-CREATE TABLE `role` (
-  `role_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `role_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `user`
 --
 
@@ -84,7 +73,7 @@ CREATE TABLE `user` (
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `role_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `role` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `create_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -159,7 +148,7 @@ ALTER TABLE `suppliers`
 ALTER TABLE `products`
   ADD `supplier_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL;
   
-------------------------------------------
+-- ----------------------------------------
 CREATE TABLE `discounts` (
     `discount_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
     `discount_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -202,12 +191,6 @@ ALTER TABLE `detail_order`
   ADD PRIMARY KEY (`order_id`,`product_id`);
 
 --
--- Chỉ mục cho bảng `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`role_id`);
-
---
 -- Chỉ mục cho bảng `user`
 --
 ALTER TABLE `user`
@@ -246,11 +229,6 @@ ALTER TABLE `traffic user`
 ADD PRIMARY KEY (`user_id`, `time`);
   
 -- Foreign Key
-
-ALTER TABLE `user`
-add constraint `user_fk` foreign key (`role_id`) 
-references `role` (`role_id`) on delete cascade on update cascade;
-
 ALTER TABLE `products`
 add constraint `products_fk1` foreign key (`img_id`) 
 references `image` (`img_id`) on delete cascade on update cascade;
