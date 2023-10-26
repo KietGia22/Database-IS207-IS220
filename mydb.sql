@@ -1,42 +1,17 @@
-create database mydb;
-use mydb;
-
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 07, 2023 lúc 09:01 AM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.2.4
+create database CSharpDB;
+use CSharpDB;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Cơ sở dữ liệu: `mydb`
---
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `cart`
---
 
 CREATE TABLE `cart` (
   `user_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `product_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `category`
@@ -67,11 +42,6 @@ CREATE TABLE `detail_order` (
 -- Cấu trúc bảng cho bảng `role`
 --
 
-CREATE TABLE `role` (
-  `role_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `role_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 -- --------------------------------------------------------
 
 --
@@ -84,7 +54,7 @@ CREATE TABLE `user` (
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `role_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `isAdmin` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
   `create_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -201,10 +171,6 @@ ALTER TABLE `detail_order`
   ADD PRIMARY KEY (`order_id`,`product_id`);
 
 --
--- Chỉ mục cho bảng `role`
---
-ALTER TABLE `role`
-  ADD PRIMARY KEY (`role_id`);
 
 --
 -- Chỉ mục cho bảng `user`
@@ -246,9 +212,6 @@ ADD PRIMARY KEY (`user_id`, `time`);
   
 -- Foreign Key
 
-ALTER TABLE `user`
-add constraint `user_fk` foreign key (`role_id`) 
-references `role` (`role_id`) on delete cascade on update cascade;
 
 ALTER TABLE `products`
 add constraint `products_fk1` foreign key (`img_id`) 
@@ -302,11 +265,6 @@ ALTER TABLE `traffic user`
 ADD CONSTRAINT `tu_fk1` FOREIGN KEY (`user_id`)
 REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 SELECT MONTH(NOW()) AS current_month;
 
-
-drop database mydb;
