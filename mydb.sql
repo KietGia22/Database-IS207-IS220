@@ -98,13 +98,11 @@ CREATE TABLE `products`(
 	`product_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
     `name_pr` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
     `name_serial` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-    `ram` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-    `memory` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
     `detail` longtext COLLATE utf8_unicode_ci NOT NULL,
     `price` int(11) NOT NULL,
     `quantity_pr` int(11) NOT NULL,
     `img_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-    `guarantee period` int(11) NOT NULL
+    `guarantee_period` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -286,6 +284,6 @@ REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 SELECT MONTH(NOW()) AS current_month;
-
+commit;
 
 drop database mydb;

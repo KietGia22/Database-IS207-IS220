@@ -9,59 +9,85 @@ SET NEW.create_at = IFNULL(NEW.create_at, NOW());
 
 
 --
-
-INSERT INTO `role` (`role_id`, `role_name`) VALUES
-(1, 'Admin'),
-(3, 'Khách hàng');
-
--- 
-
-INSERT INTO `user` (`user_id`, `name`, `email`, `phone`, `password`, `role_id`) VALUES
-(1, 'Phạm Thị Tươi', 'tuoipham123@gmail.com', '06767743434',  'tuoipham', 1),
-(2, 'Mai Văn Liêu', 'lieumai@gmail.com', '0962298124', 'hello', 3),
-(3, 'Mai Hoàng Phúc', 'fdfd@gmail.com', '0874555433', 'phucxautrai', 3),
-(4, 'Nguyễn Xuân Trà', 'xuantra@gmail.com', '0962298124', 'xuantra', 3),
-(5, 'Trần Minh Tiến', 'aaaa@gmail.com', '09622981247', 'tientran', 3);
-
---
-
-INSERT INTO `suppliers` VALUES 
-(1, 'GEARVN'),
-(2, 'Phong Vũ');
-
+INSERT INTO `suppliers`(`supplier_id`, `supplier_name`) VALUES 
+('SUPLLIER001', 'Samsung'),
+('SUPLLIER002', 'Apple'),
+('SUPLLIER003', 'Sony'),
+('SUPLLIER004', 'LG'),
+('SUPLLIER005', 'Lenovo'),
+('SUPLLIER006', 'Intel'),
+('SUPLLIER007', 'Microsoft'),
+('SUPLLIER008', 'Panasonic'),
+('SUPLLIER009', 'HP'),
+('SUPLLIER010', 'Dell'),
+('SUPLLIER011', 'Toshiba'),
+('SUPLLIER012', 'Asus'),
+('SUPLLIER013', 'Acer'),
+('SUPLLIER014', 'IBM'),
+('SUPLLIER015', 'Canon'),
+('SUPLLIER016', 'Nikon'),
+('SUPLLIER017', 'Fujifilm'),
+('SUPLLIER018', 'Olympus'),
+('SUPLLIER019', 'Sharp'),
+('SUPLLIER020', 'Philips'),
+('SUPPLIER021', 'GEARVN'),
+('SUPPLIER022', 'Phong Vũ');
 --
 
 INSERT INTO `image` (`img_id`) VALUES
 (1);
 
 --
-INSERT INTO `products` VALUES
-(1, 'iPhone 14 Pro Max 128GB màu tím', 'Iphone 14', 6, 128, '1 chiếc điện thoại tuyệt vời', 26790000, 10, 1, 12, 1),
-(2, 'iPhone 14 Pro Max 128GB màu vàng', 'Iphone 14', 6, 128, '1 chiếc điện thoại tuyệt vời', 26790000, 10, 1, 12, 1),
-(3, 'iPhone 14 Pro Max 128GB màu bạc', 'Iphone 14', 6, 128, '1 chiếc điện thoại tuyệt vời', 26790000, 10, 1, 12, 2),
-(4, 'iPhone 14 Pro Max 128GB màu đen', 'Iphone 14', 6, 128, '1 chiếc điện thoại tuyệt vời', 26790000, 10, 1, 12, 2);
-
-INSERT INTO `products` VALUES
-(5, 'Ipad', 'Máy tính bảng iPad Air 5 M1 WiFi 64GB', 8, 64, '1 chiếc Ipad tuyệt vời', 14590000, 10, 1, 12, 1);
+INSERT INTO products (product_id, name_pr, name_serial, detail, price, quantity_pr, guarantee_period, supplier_id, img_id)
+VALUES 
+('ABC123', 'Samsung Galaxy S21', 'GA007', '6.2-inch display, 12GB RAM, 256GB storage, 64MP camera', 12000000, 50, 12, 'SUPLLIER001', 1),
+('DEF456', 'Apple iPhone 12 Pro', 'IP032', '6.1-inch Super Retina XDR display, 6GB RAM, 128GB storage, 12MP camera', 16000000, 30, 12, 'SUPLLIER002', 1),
+('GHI789', 'OnePlus 9 Pro', 'OP012', '6.7-inch Fluid Display 2.0, 8GB RAM, 128GB storage, 48MP camera', 9000000, 40, 12, 'SUPLLIER003', 1),
+('JKL012', 'Google Pixel 5', 'GP040', '6.0-inch OLED display, 8GB RAM, 128GB storage, 12.2MP camera', 10000000, 20, 12, 'SUPLLIER004', 1),
+('MNO345', 'Xiaomi Mi 11', 'XM041', '6.81-inch AMOLED display, 8GB RAM, 256GB storage, 108MP camera', 11000000, 35, 12, 'SUPLLIER005', 1),
+('PQR678', 'Sony Xperia 1 III', 'SX030', '6.5-inch 4K HDR OLED display, 12GB RAM, 256GB storage, 12MP camera', 15000000, 25, 12, 'SUPLLIER001', 1),
+('STU901', 'LG Velvet 5G', 'LV015', '6.8-inch OLED display, 6GB RAM, 128GB storage, 48MP camera', 7000000, 45, 12, 'SUPLLIER002', 1),
+('VWX234', 'Motorola Edge Plus', 'ME010', '6.7-inch OLED display, 12GB RAM, 256GB storage, 108MP camera', 13000000, 30, 12, 'SUPLLIER003', 1),
+('YZA567', 'Realme X7 Pro', 'RX024', '6.55-inch AMOLED display, 8GB RAM, 128GB storage, 64MP camera', 8000000, 50, 12, 'SUPLLIER004', 1),
+('BCD890', 'Nokia 8.3 5G', 'N8G02', '6.81-inch IPS LCD display, 6GB RAM, 128GB storage, 64MP camera', 7500000, 40, 12, 'SUPLLIER005', 1),
+('EFG123', 'Asus ROG Phone 5', 'ARP045', '6.78-inch AMOLED display, 12GB RAM, 256GB storage, 64MP camera', 17000000, 20, 12, 'SUPLLIER001', 1),
+('HIJ456', 'BlackBerry KEY2', 'BBK027', '4.5-inch IPS LCD display, 6GB RAM, 64GB storage, 12MP camera', 8500000, 15, 12, 'SUPLLIER002', 1),
+('KLM789', 'HTC U12 Plus', 'HTU037', '6.0-inch Super LCD6 display, 6GB RAM, 128GB storage, 12MP camera', 9000000, 25, 12, 'SUPLLIER003', 1),
+('NOP012', 'ZTE Axon 30 Ultra', 'ZAU050', '6.67-inch AMOLED display, 8GB RAM, 128GB storage, 64MP camera', 10000000, 35, 12, 'SUPLLIER004', 1),
+('QRS345', 'Lenovo Legion Phone Duel', 'LL002', '6.65-inch AMOLED display, 12GB RAM, 256GB storage, 64MP camera', 16000000, 20, 12, 'SUPLLIER005', 1),
+('TUV678', 'Redmi K40 Pro Plus', 'RK040', '6.67-inch AMOLED display, 8GB RAM, 128GB storage, 108MP camera', 11000000, 30, 12, 'SUPLLIER001', 1),
+('WXY901', 'Oppo Find X3 Pro', 'OF031', '6.7-inch AMOLED display, 12GB RAM, 256GB storage, 50MP camera', 14000000, 25, 12, 'SUPLLIER002', 1),
+('ZAB234', 'Vivo iQOO 7', 'VI012', '6.62-inch AMOLED display, 8GB RAM, 128GB storage, 48MP camera', 9000000, 50, 12, 'SUPLLIER003', 1),
+('CDE567', 'Meizu 18 Pro', 'M1802', '6.7-inch Super AMOLED display, 8GB RAM, 256GB storage, 50MP camera', 12000000, 35, 12, 'SUPLLIER004', 1),
+('FGH890', 'Poco X3 Pro', 'PX302', '6.67-inch IPS LCD display, 8GB RAM, 128GB storage, 48MP camera', 8000000, 45, 12, 'SUPLLIER005', 1);
 
 -- CREATE TABLE `product_category` (
 --    `product_id` int(11) NOT NULL,
 --    `category_id` int(11) NOT NULL
 -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `product_category` VALUES
-(1, 1),
-(2, 1),
-(3, 1),
-(4, 1);
-INSERT INTO `product_category` VALUES
-(5, 2);
+INSERT INTO `product_category` (`category_id`, `product_id`) VALUES
+('CATE001', 'ABC123'),
+('CATE001', 'DEF456'),
+('CATE001', 'GHI789'),
+('CATE002', 'ABC123'),
+('CATE002', 'DEF456');
 
-CREATE TABLE `category` (
-  `category_id` int(11) NOT NULL,
-  `category_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+-- -------------------------------------------
+
+-- INSERT INTO `category` VALUES
+-- (1, 'IPHONE'),
+-- (2, 'IPAD');
 
 INSERT INTO `category` VALUES
-(1, 'IPHONE'),
-(2, 'IPAD');
+('CATE001', 'Điện thoại'),
+('CATE002', 'Thịnh hành');
+-- ---------------------------------------------
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM user 
+Delete FROM suppliers
+delete from image
+delete from category
+delete from products
+delete from product_category
+--
