@@ -83,11 +83,8 @@ CREATE TABLE `user` (
 
 CREATE TABLE `image`(
    `img_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-   `img_1` varchar(200) COLLATE utf8_unicode_ci NULL,
-   `img_2` varchar(200) COLLATE utf8_unicode_ci NULL,
-   `img_3` varchar(200) COLLATE utf8_unicode_ci NULL,
-   `img_4` varchar(200) COLLATE utf8_unicode_ci NULL,
-   `img_5` varchar(200) COLLATE utf8_unicode_ci NULL
+    product_id varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+    image_path varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -101,7 +98,6 @@ CREATE TABLE `products`(
     `detail` longtext COLLATE utf8_unicode_ci NOT NULL,
     `price` int(11) NOT NULL,
     `quantity_pr` int(11) NOT NULL,
-    `img_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
     `guarantee_period` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -227,9 +223,9 @@ ALTER TABLE `traffic user`
 ADD PRIMARY KEY (`user_id`, `time`);
   
 -- Foreign Key
-ALTER TABLE `products`
-add constraint `products_fk1` foreign key (`img_id`) 
-references `image` (`img_id`) on delete cascade on update cascade;
+ALTER TABLE `image`
+add constraint `products_fk1` foreign key (`product_id`) 
+references `products` (`product_id`) on delete cascade on update cascade;
 
 ALTER TABLE `cart`
 ADD CONSTRAINT `cart_fk1` FOREIGN KEY (`user_id`)
