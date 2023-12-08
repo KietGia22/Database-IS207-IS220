@@ -57,8 +57,7 @@ CREATE TABLE `detail_order` (
   `order_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `product_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `price_pr` bigint(20) unsigned NOT NULL,
-  `quantity_pr` int(11) NOT NULL,
-  `warranty period` varchar(100) NOT NULL
+  `quantity_pr` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -74,7 +73,8 @@ CREATE TABLE `user` (
   `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `role` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `create_at` timestamp NULL DEFAULT NULL
+  `create_at` timestamp NULL DEFAULT NULL,
+  `address` varchar(200) COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -83,8 +83,8 @@ CREATE TABLE `user` (
 
 CREATE TABLE `image`(
    `img_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-    product_id varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-    image_path varchar(255) COLLATE utf8_unicode_ci NOT NULL
+    `product_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+    `image_path` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -98,7 +98,8 @@ CREATE TABLE `products`(
     `detail` longtext COLLATE utf8_unicode_ci NOT NULL,
     `price` int(11) NOT NULL,
     `quantity_pr` int(11) NOT NULL,
-    `guarantee_period` int(11) NOT NULL
+    `guarantee_period` int(11) NOT NULL,
+    `supplier_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -136,11 +137,9 @@ CREATE TABLE `suppliers` (
     `supplier_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
     `supplier_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 ALTER TABLE `suppliers`
   ADD PRIMARY KEY (`supplier_id`);
-
-ALTER TABLE `products`
-  ADD `supplier_id` varchar(15) COLLATE utf8_unicode_ci NOT NULL;
   
 -- ----------------------------------------
 CREATE TABLE `discounts` (
@@ -279,7 +278,6 @@ REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-SELECT MONTH(NOW()) AS current_month;
-commit;
-
 drop database mydb;
+
+GRANT ALL PRIVILEGES ON * . * TO 'sang'@'localhost';
